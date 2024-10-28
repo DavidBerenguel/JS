@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <title>Jogo da Forca V2</title>
+        <script>
+            document.addEventListener("DOMContentLoaded" ,function () {
+
+                const words = [
+                    "Portugal","Barcelos","Ferrari","Lisboa","Portalegre","CateloBranco",
+                    "Otorrinolaringologista","Otorrinolaringologia","Pararlelipipedo",
+                    "Hexaedro","Paralelogramo","Ornitorrino","Filantropo"
+                ];
+
+                let currentWord = "";
+                let underscores;
+                const attemps = document.querySelector("attemps")
+                const game = document.getElementById("game");
+                const form = document.querySelector("form");
+                const attempsLeftOutput = document.getElementById("attempsLeftOutput");
+                const reset = document.getElementById("btnReset");
+
+                function startGame() {
+
+                    const randNumber = Math.floor(Math.random() * words.length);                
+                    currentWord = words[randNumber].toUpperCase(); 
+                
+                    console.log(currentWord);
+
+                    // Utilizar com muita moderação
+                    // Esta propriedade vai limpar todo o HTML existente na área de jogo
+                    game.innerHTML = "";
+
+                    // Injetar os SPANS com underscores na página pelo número de letras
+                    for ( let i = 0; i < currentWord.length; i++) {
+    
+                        game.appendChild( document.createElement("span")).textContent = "_";
+                    }    
+
+                    // Guardar a lista de SPANS criados
+                    underscores = document.querySelectorAll("#game span");
+
+                    // Actualizar o contador visual de tenativas
+                    attempsLeftOutput.textContent = attempsLeft;
+
+                    
+                } // END startGame        
+
+                startGame();
+
+                
+                form.addEventListener("submit", function (event) {
+
+                    event.preventDefault();
+
+                    let checkLetter = false;
+
+                    const letterPicked = form.letter.value.toUpperCase();
+
+                    form.letter.value = "";
+
+                    for ( let l = 0; l < currentWord.length; l++) {
+
+                        if ( letterPicked == currentWord[l]) {
+
+                            underscores[l].textContent = letterPicked;
+
+                            checkLetter = true;
+                        }
+                    }
+
+                    if (checkLetter == false) {
+
+                        attempsLeft--;
+                        
+                        attemps.lastElementChild.remove()
+
+                    }
+
+                    if (attempsLeft <= 0) {
+
+                        alert("És um fraco tenta novamente!");
+                    }
+                });
+
+                reset.addEventListener("click", function () {
+                    
+                    startGame();                    
+                });
+
+            });
+        </script>
+        <style>
+            #game {
+                letter-spacing: 0.7rem; 
+                font-size: 2rem;
+                font-weight: bold;
+                padding-bottom: 20px;
+            }
+
+            form input {
+                width: 24px;
+            }
+            
+            #attemps {
+                
+                position: relative;
+                top: 100px;
+                left: 0px;
+            }
+            
+            #attemps img {
+
+                position: absolute;
+                width: 125px;
+                height: 200px;
+            }
+
+            #attemps #head {
+                
+                left: 275px;
+            }
+            #attemps #armLeft {
+
+                top: 130px;
+                left: 100px;
+            }
+            #attemps #armRight {
+
+                top: 130px;
+                left: 450px;
+            }
+            #attemps #legLeft {
+
+                top: 400px;
+                left: 170px;
+            }
+            #attemps #legRight {
+
+                top: 400px;
+                left: 400px;
+            }
+
+
+        </style>
+    </head>
+    <body>
+        <div id="attemps">
+            <img id="head" src="Img_jogo_forca/head.jpg" alt="">
+            <img id="armLeft" src="Img_jogo_forca/left arm.jpg" alt="">
+            <img id="armRight" src="Img_jogo_forca/right arm.jpg" alt="">
+            <img id="legLeft" src="Img_jogo_forca/left leg.jpg" alt="">
+            <img id="legRight" src="Img_jogo_forca/right leg.jpg" alt="">
+        </div>
+        <div id="game"></div>
+        <form method="post" action="JS_jogo_velha_v2.html">
+            <div>
+                <label>
+                    Escolha uma letra
+                    <input type="text" name="letter" autofocus required minlength="1" maxlength="1">
+                </label>
+                <button type="submit">OK</button>
+            </div>
+        </form>
+        <div>
+            <button type="button" id="btnReset">Reset</button>
+        </div>
+    </body>
+</html>

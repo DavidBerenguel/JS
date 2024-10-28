@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <title>AJAX com XML Http Request</title>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+
+                const list = document.getElementById("list");
+
+                console.log(list);
+
+                const xhr = new XMLHttpRequest();
+
+                console.log( xhr );
+
+                xhr.open("GET", "AJAX.json");
+
+                xhr.addEventListener("load", () => {
+                    console.log( xhr.response );
+
+                    const countries = JSON.parse(xhr.response);
+
+                    console.log( countries );
+
+                    for ( let country of countries) {
+
+                        console.log( country );
+                        list.appendChild( document.createElement("li")).textContent = country;
+                    }
+
+                });
+
+                xhr.send();
+            });
+        </script>
+    </head>
+    <body>
+        <ul id="list"></ul>
+    </body>
+</html>

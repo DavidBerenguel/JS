@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <title>Aleatoridade</title>
+        <script>
+            console.log( Math.random() ); 
+            /* 
+            Retorna todos os numeros possiveis entre 0 e 1
+            0.000000000000001
+            0.999999999999999
+            */
+            /* Multiplicando por um numero, conseguimos algo entre X e Y, ex: 0 e 9 */
+            console.log( Math.random() * 10);
+
+            /* round() arrendonda sempre para o numero mais próximo */
+            console.log("Round", Math.round(3.33333) );
+            console.log("Round", Math.round(3.99999) );
+
+            /* floor() arredonda sempre para baixo, ou seja, 3.99 => 3 */
+            console.log("Floor", Math.floor(3.3333) );
+            console.log("Floor", Math.floor(3.9999) );
+
+            /* ceil() arredonda sempre para cima, ou seja, 3.0001 => 4 */
+            console.log("Ceil", Math.ceil(3.3333) );
+            console.log("Ceil", Math.ceil(3.9999) );
+
+            console.log("de 1 a 10", Math.ceil(Math.random() * 10));   
+            console.log("de 0 a 9", Math.floor(Math.random() * 10));   
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>

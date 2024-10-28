@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <title>Formúlario de login</title>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+
+                const usernameList = ["BabyShark", "Orochimaru", "Lana", "JJBoçe"];
+                const passwordList = ["123456789", "Sasuke", "Maça", "Vaqueixons"];
+
+                const form = document.querySelector("form");
+
+                form.addEventListener("submit", function () {
+
+                    let validLogin = false;
+                    
+                    event.preventDefault();
+                    
+                    for ( let i = 0; i < usernameList.length; i++) {
+                        
+                        if (
+                            form.username.value == usernameList[i] && 
+                            form.password.value == passwordList[i]
+                            ) {
+                                
+                                validLogin = true;
+                        }
+                    }
+                                               
+                    
+                    if ( validLogin ) {
+                        
+                        console.log("Bem vindo!");
+                    }
+                    else {
+                        
+                        console.log("Dados Incorretos");
+                    }
+                });
+            });
+
+        </script>
+    </head>
+    <body>
+        <form method="post" action="JS_form_login.html">
+            <div>
+                <label>
+                    Nome de Utilizador
+                    <input type="text" name="username" required>
+                </label>
+            </div>
+            <div>
+                <label>
+                    Palavra-passe
+                    <input type="password" name="password" required>
+                </label>
+            </div>
+            <div>
+                <button type="submit">Login</button>
+            </div>
+        </form>
+    </body>
+</html>

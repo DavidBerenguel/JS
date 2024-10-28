@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <title> alteraçãoo de Estilização Direta</title>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+
+                const t = document.getElementById("title");
+                const p = document.getElementById("paragraph");
+                const b = document.getElementById("change");
+
+                console.log(t, p, b);
+
+                t.style.color = "#F00";
+                t.style.fontStyle = "italic";
+                t.style.textDecoration = "underline";
+
+                p.style.backgroundColor = "#060";
+                p.style.color = "#FFF";
+                p.style.fontWeight = "bold";
+
+                change.addEventListener("click", function() {
+                    
+                    /* Quase nunca, se nunca vou aplicar*/
+
+                    if ( t.style.fontStyle == "italic") {
+
+						paragraph.style.color = "#F00";
+						paragraph.style.fontStyle = "italic";
+						paragraph.style.textDecoration = "underline";
+
+						title.style.backgroundColor = "#060";
+						title.style.color = "#FFF";
+						title.style.fontWeight = "bold";
+
+						title.style.fontStyle = "normal";
+						title.style.textDecoration = "none";
+						paragraph.style.backgroundColor = "transparent";
+					}
+					else {
+						title.style.color = "#F00";
+						title.style.fontStyle = "italic";
+						title.style.textDecoration = "underline";
+
+						paragraph.style.backgroundColor = "#060";
+						paragraph.style.color = "#FFF";
+						paragraph.style.fontWeight = "bold";
+						
+						title.style.backgroundColor = "transparent";
+						paragraph.style.textDecoration = "none";
+						paragraph.style.fontStyle = "normal";
+                    }
+                });
+
+            });
+        </script>
+    </head>
+    <body>
+        <h1 id="title">Título da página</h1>
+        <p id="paragraph">Parágrafo com cenas e coisas</p>
+        <div> 
+            <button type="button" id="change">Mudar</button>
+        </div>
+    </body>
+</html

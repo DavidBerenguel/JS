@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <title>Ciclo Temporal</title>
+        <script>
+            
+            let s = 0;
+            let m = 0;
+            let h = 0;
+
+            setInterval(function () {
+                                
+                s++;
+                
+                if ( s > 59 ) {
+                    
+                    s = 0;
+                    m++;
+                }
+                if ( m > 59 ) {
+                    
+                    m = 0;
+                    h++;
+                }
+                if ( h > 23 ) {
+                    
+                    h = 0;   
+                }
+                
+                document.getElementById("seconds").textContent = s < 10 ? "0" + s : s;
+                document.getElementById("minutos").textContent = m < 10 ? "0" + m : m;
+                document.getElementById("horas").textContent = h < 10 ? "0" + h : h;
+
+            }, 1000);
+
+        </script>
+    </head>
+    <body>
+        <div>
+            <span id="horas">0</span> :
+            <span id="minutos">0</span> :
+            <span id="seconds">0</span>
+        </div>
+    </body>
+</html>

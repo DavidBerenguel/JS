@@ -1,0 +1,38 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+main {
+    width: 500px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+div {
+    width: 350px;
+    height: 250px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-column-gap: 5px;
+
+}
+
+h2 {
+    color: #000;
+    font-size: 15px;
+    text-align: center;
+}
+
+img {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    border-radius: 50%;
+}
+

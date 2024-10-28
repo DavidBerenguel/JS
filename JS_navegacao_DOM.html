@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <title>Navegação no DOM</title>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+
+                const list = document.getElementById("list");
+
+                //A partir da lista, chegamos ao segundo <p> com o .nextElementSibling 
+                console.log( list.nextElementSibling.nextElementSibling );
+                
+                console.log( list.firstElementChild );
+                console.log( list.firstElementChild.nextElementSibling );
+                console.log( list.lastElementChild.previousElementSibling );
+                console.log( list.lastElementChild );
+
+                /*O meu codigo
+
+                console.log( 
+                    list.previousElementSibling
+                    .firstElementChild
+                    .nextElementSibling
+                    .nextElementSibling
+                    .lastElementChild
+                    .lastElementChild
+                    .previousElementSibling
+                    .lastElementChild
+                    .lastElementChild
+                    .lastElementChild
+                    .textContent
+                );
+                */
+                
+                //Codigo do Ivo
+
+                console.log(
+					list
+					.previousElementSibling
+					.lastElementChild
+					.lastElementChild
+					.children[1] // Em vez de usar .firstElementChild.nextElementSibling
+					.lastElementChild
+					.lastElementChild
+					.lastElementChild
+                    .textContent
+				);
+
+                console.log(document.querySelector("body > ul:first-child ul ul li:last-child em").textContent);
+                
+                console.log(list.previousElementSibling.getElementsByTagName("em")[2].textContent)
+            });
+        </script>
+    </head>
+    <body>
+        <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3
+                <ul>
+                    <li>Subitem1</li>
+                    <li>Subitem2
+                        <ul>
+                            <li>Subsubitem 1 <em>Coisas e tal</em></li>
+                            <li>Subsubitem 2 <em>Coisas e tal</em></li>
+                            <li>Subsubitem 3 <em>SELECIONAR ESTE AQUI!</em></li>
+                        </ul>
+                    </li>
+                    <li>subitem3</li>
+                </ul>
+            </li>
+        </ul>
+        <ul id="list">
+            <li>
+                <a href="">Item 1</a>
+            </li>
+            <li>
+                <a href="">Item 2</a>
+            </li>
+            <li>
+                <a href="">Item 3</a>
+            </li>
+            <li>
+                <a href="">Item 4</a>
+            </li>
+        </ul>
+        <p>dfdslfndslfk dsnfdsklnfskdnf dfnsdkfsnd</p>
+        <p>23436566 65 6467568634 56546745</p>
+    </body>
+</html>

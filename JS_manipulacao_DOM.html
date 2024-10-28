@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <title>Manipulação no DOM</title>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+
+                const content = document.getElementById("content");
+
+
+                // Para criar um elemento tem de ser feito com .appendChild
+                content.appendChild( document.createElement("p") );
+
+                content.lastElementChild.textContent = "Novo paragrafo";
+
+                // .remove() é usado para apagar elementos
+                content.firstElementChild.remove();
+
+                content.nextElementSibling.firstElementChild.remove();
+                content.nextElementSibling.lastElementChild.remove();
+                content.nextElementSibling.appendChild(document.createElement("Strong")).textContent = "Novo texto";                
+
+            });
+        </script>
+    </head>
+    <body>
+        <div id="content">
+            <p>João come tudo tudo tudo</p>
+            <p>João come tudo tudo sem parar</p>
+        </div>
+        <div>
+            <span>Texto</span>
+            <span>Coisas</span>
+        </div>
+    </body>
+</html>

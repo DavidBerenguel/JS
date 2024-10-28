@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <title>Costum Data Fields</title>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+
+                const spanUsername = document.getElementById("username");
+
+                console.log(spanUsername);
+                console.log(spanUsername.textContent);
+                console.log(spanUsername.dataset.userId);
+                console.log(spanUsername.dataset.cenas);
+                console.log(spanUsername.parentElement.dataset.secret);
+                console.log(spanUsername.dataset.lastLogin);
+            });
+        </script>
+    </head>
+    <body>
+        <main>
+            <header data-secret="super secret info no header">
+                Welcome <span id="username" data-user-id="178" data-cenas="coisas" data-last-login="2024-02-20">Josheph9128</span>
+            </header>
+        </main>
+    </body>
+</html>

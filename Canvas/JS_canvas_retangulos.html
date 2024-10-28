@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <title>Canvas: Formas Retangulares</title>
+        <script>
+
+            document.addEventListener("DOMContentLoaded", () => {
+
+                const canvas = document.querySelector("canvas").getContext("2d");
+
+                // Canvas trabalha só com Pixeis
+                //
+                canvas.fillRect(100, 100, 300, 300);
+
+                canvas.fillStyle = "#0A4";
+
+                canvas.fillRect(600, 600, 200, 200);
+
+                canvas.strokeStyle = "#F00";
+
+                canvas.strokeRect(600, 600, 200, 200);
+
+                canvas.fillStyle = "#0055A4";
+                canvas.fillRect(50, 600, 100, 200);
+                
+                canvas.fillStyle = "#FFF";
+                canvas.fillRect(150, 600, 100, 200);
+
+                canvas.fillStyle = "#EF4135";
+                canvas.fillRect(250, 600, 100, 200);
+
+                canvas.strokeStyle = "#CCC";
+                canvas.strokeRect(50, 600, 300  , 200);
+            });
+        </script>
+    </head>
+    <body> 
+        <canvas width="800" height="800"></canvas>
+    </body>
+</html>

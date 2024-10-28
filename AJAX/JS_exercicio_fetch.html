@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <title>Exercicio com Fetch</title>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+
+                const userTable = document.getElementById("userTable");
+
+                fetch("//jsonplaceholder.typicode.com/users")
+                .then( response => response.json())
+                .then( result => {
+
+                    for ( let users of result) {
+
+                        userTable.appendChild( document.createElement("tr"))
+                        
+                        const tr = userTable.lastElementChild;
+                        
+                        tr.appendChild( document.createElement("td")).textContent = users.id;
+                        tr.appendChild( document.createElement("td")).textContent = users.name;
+                        tr.appendChild( document.createElement("td")).textContent = users.email;
+
+                    }
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <table id="userTable" border="1">
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+            </tr>
+        </table>
+    </body>
+</html>

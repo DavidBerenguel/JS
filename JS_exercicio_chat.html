@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <title>Aplicação de chat</title>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+
+                const chatArea = document.getElementById("chatArea");
+                const form = document.querySelector("form");
+
+                const datetime = new Date();
+
+                
+                const bots = [
+                    {
+                        "username": "Rui Unas",
+                        "phrase": [
+                            "Ainda me dói a barriga deste dia. ... ",
+                            "Podiamos ter ficado a anhar no Hotel..."
+                        ]
+                    },
+                    {
+                        "username": "Camilo Castelo Branco",
+                        "phrase": [
+                            "O silêncio é uma confissão.",
+                            "Não há amor que resista a vinte e quatro horas de filosofia.",
+                            "Quem é a GOSTOSA",
+                            "Anda cá oh UNAS!"
+                            
+                        ]
+                    },
+                    {
+                        "username": "Jorge Jesus",
+                        "phrase": [
+                            "Há três fatores importantes [num jogo de futebol]: a vitória, golear, e a nota artística. Mas este último é na patinagem artística." ,
+                            "O que era o Benfica antes de mim?",
+                            "Tamos tranquilos. Tamos? Agora já estava aqui a falar à Amadora."
+                        ] 
+                    }
+                ];
+
+                //let chatArray = [];
+                
+                /*if (localStorage["chatArea_draft"]) {
+
+                    chatArray = JSON.parse( localStorage["ChatArea_draft"]);
+
+                    console.log("chatArea_draft");
+                }*/
+                
+                function writeMessage(username, message) {
+                    
+                    let h = datetime.getHours();
+                    let m = datetime.getMinutes();
+
+                    chatArea.appendChild(document.createElement("dt")).textContent = username;
+                    chatArea.appendChild(document.createElement("dd")).textContent = "[" + h + ":" + m + "]" + " " + message;
+
+                }
+
+                function chooseBot() {
+
+                    const randomBot = bots[ Math.floor(Math.random() * bots.length) ];
+                    const randomPhrase = Math.floor(Math.random() * randomBot.phrase.length);
+
+                    const username = randomBot.username;
+                    const message = randomBot.phrase[ randomPhrase ];
+                    
+                    writeMessage(username, message);
+                }                
+                form.addEventListener("submit", event => {
+                    
+                    let h = datetime.getHours();
+                    let m = datetime.getMinutes();
+                    
+                    event.preventDefault();
+                    
+                    writeMessage(form.username.value, form.message.value);
+                    
+                    form.message.value = "";
+                    
+                    chooseBot();
+                    
+                });
+
+                setInterval(() => {
+                    
+                    const randomNum = Math.floor(Math.random() * 10);
+                    
+                    if( randomNum == 1) {
+                        
+                        chooseBot();
+                    }
+                }, 800);
+                
+
+                //chatArray.push(chatArea.textContent)
+
+                /*setInterval(() => {
+
+
+                    if ( chatArea.textContent.length > 0 ) {
+
+                        localStorage["chatArea_draft"] = chatArea.textContent;
+                    }
+
+                }, 5000);
+
+                if (localStorage["chatArea_draft"]) {
+
+                    chatArea.textContent = localStorage["chatArea_draft"];
+                }
+                */
+            });
+        </script>
+        <style>
+			#chatArea {
+				height: 80vh;
+				overflow: auto;
+				border: 2px solid #999;
+				font-family: Calibri, sans-serif;
+			}
+
+			#chatArea dt, #chatArea dd {
+				display: inline-block;
+				vertical-align: top;
+				margin: 0;
+				padding: 0;
+			}
+
+			#chatArea dt {
+				width: 20%;
+				font-weight: bold;
+				text-align: right;
+			}
+			#chatArea dd {
+				margin-left: 8px;
+				width: 78%;
+			}
+        </style>
+    </head>
+    <body>
+        <dl id="chatArea"></dl>
+        <div>
+            <form method="post" action="JS_exercicio_chat.html">
+                <input type="text" name="username" required placeholder="Utilizador" arial-label="Utilizador">
+                <input type="text" name="message" required placeholder="Escreva mensagem" arial-label="Mensagem">
+                <button type="submit">Ok</button>
+            </form>
+        </div>
+    </body>
+</html>

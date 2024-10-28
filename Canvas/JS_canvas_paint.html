@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <title>Canvas: Criar um Paint</title>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+
+                const canvas = document.querySelector("canvas");
+                const canvasCtx = canvas.getContext("2d");
+
+                let clicking = false;
+
+                const lineSize = document.getElementById("lineSize");
+                const lineColor = document.getElementById("lineColor");
+
+                const deleteBtn = document.getElementById("deleteBtn");
+
+                deleteBtn.addEventListener("click", () => {
+
+                    if (confirm("Confirma que queres apagar")) {
+
+                        canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
+                    }
+                });
+
+                lineSize.addEventListener("change", () => {
+
+                    canvasCtx.lineWidth = lineSize.value;
+                });
+
+                lineColor.addEventListener("change", () => {
+
+                    canvasCtx.strokeStyle = lineColor.value;
+                });
+
+                canvas.addEventListener("mousedown", event => {
+
+                    clicking = true;
+
+                    const canvasX = event.pageX - canvas.offsetLeft;
+                    const canvasY = event.pageY - canvas.offsetTop;
+
+                    canvasCtx.beginPath();
+                    
+                    canvasCtx.moveTo(canvasX, canvasY);
+
+                });
+
+                canvas.addEventListener("mousemove", event => {
+
+                    if (clicking) {
+
+                        
+                        const canvasX = event.pageX - canvas.offsetLeft;
+                        const canvasY = event.pageY - canvas.offsetTop;
+                        
+                        canvasCtx.lineTo(canvasX, canvasY);
+                        
+                        canvasCtx.stroke();
+                    }
+                });
+                
+                canvas.addEventListener("mouseup", event => {
+                    
+                    clicking = false;
+                });
+
+                canvas.addEventListener("mouseout", event => {
+
+                    clicking = false;
+                });
+            });
+        </script>
+        <style>
+            main {
+                width: 806px;
+                margin: 0 auto;
+                padding-top: 50px;
+            }
+
+            canvas {
+                border: 3px dashed #000;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <div>
+                <canvas width="800" height="800"></canvas>
+            </div>
+            <div>
+                <label>
+                    Tamanho Linha:
+                    <select id="lineSize">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>10</option>
+                        <option>15</option>
+                        <option>20</option>
+                        <option>25</option>
+                        <option>30</option>
+                    </select>
+                </label>
+                <label>
+                    Cor Linha:
+                    <select id="lineColor">
+                        <option value="#00F" selected>Preto</option>
+                        <option value="#F00">Red</option>
+                        <option value="#0F0">Green</option>
+                        <option value="#00F">Red</option>
+                    </select>
+                </label>
+                <button type="button" id="deleteBtn">Apagar tudo</button>
+            </div>
+        </main>
+    </body>
+</html>

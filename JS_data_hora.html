@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <title>data e Hora Atual</title>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+
+                const datetime = new Date();
+
+                const hoursOut = document.getElementById("hours")
+                const minutesOut = document.getElementById("minutes")
+                const secondsOut = document.getElementById("seconds")
+                
+                let h = datetime.getHours();
+                let m = datetime.getMinutes();
+                let s = datetime.getSeconds();
+
+                /*console.log( datetime.getHours() );
+                console.log( datetime.getMinutes() );
+                console.log( datetime.getSeconds() );
+                
+                console.log( datetime.getMonth() + 1 );
+                console.log( datetime.getFullYear() );
+                console.log( datetime.getDate() );
+                */
+               
+                setInterval(function () {
+
+                   s++;
+                   
+                    if ( s > 59 ) {
+                        
+                        s = 0;
+                        m++;
+                        
+                    }
+                    
+                    if ( m > 59 ) {
+                        
+                        m = 0;
+                        h++;
+                    }
+                    
+                    if ( h > 23 ) {
+                        
+                        h = 0;
+                    }
+                    
+                    hoursOut.textContent = h;
+                    minutesOut.textContent = m;
+                    secondsOut.textContent = s;
+                    
+                    /*if ( s < 10) {
+                        secondsOut.textContent = "0" + s;
+                    }
+                    else {
+                        secondsOut.textContent = s;
+                    }
+                    
+                    if ( m < 10) {
+                        minutesOut.textContent = "0" + m;
+                    }
+                    else {
+                        minutesOut.textContent = m;
+                    }
+                    
+                    if ( h < 10) {
+                        hoursOut.textContent = "0" + h;
+                    }
+                    else {
+                        hoursOut.textContent = h;
+                    }
+                    */
+                   // Podemos substituir o IF e ELSE em cima por um IF abraviado, como exemplo em baixo
+                   
+                   secondsOut.textContent = s < 10 ? "0" + s : s;
+                   minutesOut.textContent = m < 10 ? "0" + m : m;
+                   hoursOut.textContent = h < 10 ? "0" + h : h;
+
+                }, 1000);
+            });
+        </script>
+    </head>
+    <body>
+        <div>
+            <span id="hours">00</span>
+            <span id="minutes">00</span>
+            <span id="seconds">00</span>
+        </div>
+    </body>
+</html>

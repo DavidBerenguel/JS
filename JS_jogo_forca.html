@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <title>Jogo da Forca</title>
+        <script>
+            document.addEventListener("DOMContentLoaded" ,function () {
+
+                const words = [
+                    "Portugal","Barcelos","Ferrari","Lisboa","Portalegre","CateloBranco",
+                    "Otorrinolaringologista","Otorrinolaringologia","Pararlelipipedo",
+                    "Hexaedro","Paralelogramo","Ornitorrino","Filantropo"
+                ];
+
+                let attempsLeft = 6;
+                let currentWord = "";
+                let underscores;
+                const game = document.getElementById("game");
+                const form = document.querySelector("form");
+                const attempsLeftOutput = document.getElementById("attempsLeftOutput");
+                const reset = document.getElementById("btnReset");
+
+                function startGame() {
+
+                    attempsLeft = 6;
+
+                    const randNumber = Math.floor(Math.random() * words.length);                
+                    currentWord = words[randNumber].toUpperCase(); 
+                
+                    console.log(currentWord);
+
+                    // Utilizar com muita moderação
+                    // Esta propriedade vai limpar todo o HTML existente na área de jogo
+                    game.innerHTML = "";
+
+                    // Injetar os SPANS com underscores na página pelo número de letras
+                    for ( let i = 0; i < currentWord.length; i++) {
+    
+                        game.appendChild( document.createElement("span")).textContent = "_";
+                    }    
+
+                    // Guardar a lista de SPANS criados
+                    underscores = document.querySelectorAll("#game span");
+
+                    // Actualizar o contador visual de tenativas
+                    attempsLeftOutput.textContent = attempsLeft;
+                    
+                } // END startGame        
+
+                startGame();
+
+                
+                form.addEventListener("submit", function (event) {
+
+                    event.preventDefault();
+
+                    let checkLetter = false;
+
+                    const letterPicked = form.letter.value.toUpperCase();
+
+                    form.letter.value = "";
+
+                    for ( let l = 0; l < currentWord.length; l++) {
+
+                        if ( letterPicked == currentWord[l]) {
+
+                            underscores[l].textContent = letterPicked;
+
+                            checkLetter = true;
+                        }
+                    }
+
+                    if (checkLetter == false) {
+
+                        attempsLeft--;
+                    }
+
+                    if (attempsLeft <= 0) {
+
+                        alert("És um fraco tenta novamente!");
+                    }
+                    attempsLeftOutput.textContent = attempsLeft;
+                });
+
+                reset.addEventListener("click", function () {
+                    
+                    startGame();                    
+                });
+
+            });
+        </script>
+        <style>
+            #game {
+                letter-spacing: 0.7rem; 
+                font-size: 2rem;
+                font-weight: bold;
+                padding-bottom: 20px;
+            }
+
+            form input {
+                width: 24px;
+            }
+
+            dl {
+                display: flex;
+                justify-content: flex-end;
+            }
+        </style>
+    </head>
+    <body>
+        <dl>
+            <dt>Tentativas Restantes</dt>
+            <dd id="attempsLeftOutput">6</dd>
+        </dl>
+        <div id="game"></div>
+        <form method="post" action="JS_jogo4.html">
+            <div>
+                <label>
+                    Escolha uma letra
+                    <input type="text" name="letter" autofocus required minlength="1" maxlength="1">
+                </label>
+                <button type="submit">OK</button>
+            </div>
+        </form>
+        <div>
+            <button type="button" id="btnReset">Reset</button>
+        </div>
+    </body>
+</html>

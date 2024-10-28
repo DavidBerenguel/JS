@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <title>Jogo de Adivinhar</title>
+        <script>
+            let playerChoice = prompt("Escolha um número entre 1 e 10");
+
+            const randomNum = Math.ceil(Math.random() * 10);
+
+            while (playerChoice != randomNum) {
+
+                alert("Ainda não acertou!");
+
+                playerChoice = prompt("Tente novamente, escolha entre 1 e 10");
+            }
+
+            alert("Acertou!");
+            
+            /*
+            if ( playerChoice == randomNum) {
+
+                alert("Acertou!");
+            }
+            else {
+                // Concatenar á String o número aleatório
+                console.log("Falhou, o número era " + randomNum);
+            }
+            */
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>

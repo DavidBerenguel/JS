@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <title>Objectos Reutilizáveis: Class</title>
+        <script>
+
+            /* 
+                Objetos simples, os objectos de baixo nao são reutilizados
+
+            const spiderMan = {
+                nome: "Homem-Aranha",
+                secretIdentity: "Peter Parker",
+                superPower: "Aranha"
+            }
+
+            const hulk = {
+                name:"Hulk",
+                secretIdentity: "Bruce Banner",
+                superPower: "Forca"
+            }
+            */
+
+            class SuperHero {
+                name = "";
+                secretIdentity = "";
+                superPower = "";
+            
+                /* Construtor é uma função especial que arranca 
+                   imediatamente ao se criar uma instância de classe   
+                */
+                constructor( name, secretIdentity, superPower ) {
+                 
+                    this.name /* Prorpiedades do objeto */ = name; // ---> Argumentos
+                    this.secretIdentity = secretIdentity;
+                    this.superPower = superPower;
+                }
+            }
+
+            /* Para utilizar uma classe é normalmente necessário
+               criar uma instância dela para dentro de uma variavel
+               
+               A Keyword "new" é o que gera uma instância de uma classe, 
+               criando um objecto independente que herdou todas as definições 
+               dessa classe
+            */
+            const spiderMan = new SuperHero("Homem-Aranha", "Peter Parker", "Aranha");
+            const hulk = new SuperHero("Hulk","Bruce Banner","Força");
+            const batman = new SuperHero("Batman","Bruce Wayne","Melhor detetive do mundo")
+
+            console.log(spiderMan.name, hulk.name, batman.name);
+            console.log(spiderMan.secretIdentity, hulk.secretIdentity, batman.superPower);
+            console.log(spiderMan.superPower,  hulk.secretIdentity, batman.superPower);
+
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>

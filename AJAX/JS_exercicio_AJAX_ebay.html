@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <title>Exercicio Leilão Ebay</title>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+
+                const date = document.getElementById("date");
+                
+
+                fetch("http://localhost/Fundamentos_Programacao/requests.php?request=date")
+                .then( date => date.text())
+                .then( result => {
+
+                    date.textContent = result;
+                });
+                //----------------------------------------------------------------------------
+
+                const timer = document.getElementById("timer");
+                const price = document.getElementById("price");
+                
+                setInterval(() => {
+                    
+                    fetch("/Fundamentos_Programacao/requests.php?request=auction")
+                    .then(response => response.json())
+                    .then( result => {
+                        
+                        price.textContent = result.price + " €";
+                        timer.textContent = result.timer;
+                    });
+
+                }, 1000);
+                    
+            });
+        </script>
+    </head>
+    <body>
+        <h1>EBAY</h1>
+        <div>            
+            <time id="date"></time>
+        </div>
+        <section>
+            <h2>Artigo Basofo do EBAY</h2>
+            <dl>
+                <dt>Tempo que falta</dt>
+                <dd id="timer"></dd>
+                <dt>Preço atual</dt>
+                <dd id="price"></dd>
+            </dl>
+        </section>
+    </body>
+</html>

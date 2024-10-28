@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <title>Destrutores</title>
+        <script>
+            const country = {
+                name: "Portugal",
+                capital: "Lisboa",
+                population: 10343066,
+                founded: 1139
+            }
+
+            // Destroi o objecto, criando variaveis simples das suas propriedades
+            const { name, capital, population, founded } = country;
+
+            console.log(name);
+            console.log(capital);
+            console.log(country.name);
+            console.log(country.capital);
+
+            const numbers = [123, 1234, 13245, 134256, 1234567];
+            /*  Desconstruir um ARRAY é o mesmo conceito que em cima,
+                mas cada variavel corresponde a um index ARRAY */
+            const [a, b, c, d, e] = numbers;
+
+            console.log(a, b, c, d, e);
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>

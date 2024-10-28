@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <title>Cores aleatórias</title>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                
+                setInterval(function () {
+
+                    const body = document.querySelector("body");
+
+                    const r = Math.floor(Math.random() * 256);
+                    const g = Math.floor(Math.random() * 256);;
+                    const b = Math.floor(Math.random() * 256);;
+                    
+                    
+                    body.style.backgroundColor = "rgb(" +r+ ", " +g+ ", " +b+ ")";
+                },250)
+
+            });
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>

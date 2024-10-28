@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <title>Interação com atributos de HTML</title>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+
+                const a = document.getElementById("link");
+
+                console.log( a.textContent );
+                
+                console.log( a.href );
+
+                const b = document.getElementById("img");
+
+                console.log(b.src);
+
+                console.log(b.alt);
+
+                
+                
+                const changeBtn = document.getElementById("change");
+
+                const image1 = "https://static.escolakids.uol.com.br/2021/06/camelus.jpg";
+                const image2 = "https://i.pinimg.com/550x/20/77/e2/2077e26434846c2f6f25a63c0336d9dd.jpg";
+                const text1 = "Site do MDN";
+                const text2 = "Novo texto";
+                
+                changeBtn.addEventListener("click", function () {
+                    /* Ateração dos atributo */
+                    
+                    if ( b.src == image1 ) {
+
+                        b.src = image2;
+                    
+                        a.textContent = text2;
+                    }
+
+                    else {
+                        
+                        b.src = image1;
+                    
+                        a.textContent = text1;
+
+                    }
+                });
+
+            });
+        </script>
+    </head>
+    <body>
+        <div>
+            <a id="link" href="https://developer.mozilla.org/pt-BR/">Site do MDN</a>
+        </div>
+        <div>
+            <img id="img" src="https://static.escolakids.uol.com.br/2021/06/camelus.jpg" alt="Camelo">
+        </div>
+        <button type="button" id="change">Mudar</button>
+    </body>
+</html>

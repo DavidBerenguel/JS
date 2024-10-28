@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <title>Funções de Strings</title>
+        <script>
+            const badWords = ["Malandro", "Cabeçudo", "burro"];
+
+            let userInput = prompt("Escreva alguma coisa");
+
+            for(let word of badWords) {
+
+                if(userInput.includes(word)) {
+                    alert("Não pode utilizar essa palavra! " + word);
+
+                    // replace substitui o primeiro valor pelo segundo valor
+                    userInput = userInput.replace(word, "****");
+                }
+            }
+
+            console.log("string completa: ", userInput);
+            // substring(primeiro valor é a posição, segundo valor é quantos caracteres aparecem)
+            console.log("Extração de 5 caracteres: ", userInput.substring(0, 5));
+        </script>
+    </head>
+    <body>
+        
+    </body>
+</html>

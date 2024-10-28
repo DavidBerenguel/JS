@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <title>Canvas: Circunferências</title>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+
+                const canvas = document.querySelector("canvas").getContext("2d");
+                const btnBall = document.getElementById("btnBall");
+
+                let x = 440;
+                let y = 40;
+                let dx = 5;
+                let dy = 5;
+
+                const balls = [
+                    {
+                        x: 440,
+                        y: 40,
+                        dx: 5,
+                        dy: 5,
+                        r: 20,
+                        color: "#00F"
+                    },
+                    {
+                        x: 40,
+                        y: 660,
+                        dx: 4,
+                        dy: 4,
+                        r: 40,
+                        color: "#F00"
+                    }
+                ];
+                setInterval( () => {
+                    
+                    canvas.clearRect(0, 0, 800, 800);
+
+                    for (let i = 0; i < balls.length; i++) {
+
+                        canvas.beginPath();
+                        
+                        canvas.fillStyle = balls[i].color;
+                        
+                        canvas.arc(balls[i].x, balls[i].y, balls[i].r, 0, Math.PI * 2)
+                        
+                        canvas.fill();
+                        
+                        
+                        if (balls[i].x >= 780 || balls[i].x < 20) {
+                            
+                            balls[i].dx = -balls[i].dx; // -5
+                        }
+                        
+                        if (balls[i].y >= 760 || balls[i].y < 40) {
+                        
+                            balls[i].dy = -balls[i].dy;
+                        }
+                        
+                        balls[i].x = balls[i].x + balls[i].dx;
+                        balls[i].y = balls[i].y + balls[i].dy;
+                    };
+                    
+                }, 10);
+
+                // Criar um botão para adicionar bolas com direção ,tamanho ,cor, velocidade aleatorias
+                btnBall.addEventListener("click", () => {
+
+                    const r = Math.floor(Math.random() * 256)
+                    const g = Math.floor(Math.random() * 256)
+                    const b = Math.floor(Math.random() * 256)
+
+                    const randomBall = Math.floor(Math.random() * 799);
+                    const randomVeloc = Math.floor(Math.random() * 10);
+                    const randomSize = Math.floor(Math.random() * 40);
+
+                    let newBall =
+                        {
+                            x: randomBall,
+                            y: randomBall,
+                            dx: randomVeloc,
+                            dy: randomVeloc,
+                            r: randomSize,
+                            // Interpulaçáo de uma template literals --> ``
+                            color: `rgb(${r}, ${g}, ${b} )`
+ 
+                    };
+
+                    balls.push(newBall);
+                });
+
+            });
+        </script>
+        <style>
+            canvas { outline: 1px solid red; }
+        </style>
+    </head>
+    <body>
+        <canvas width="800" height="800"></canvas>
+        <div>
+            <button id="btnBall" type="button">Nova Bola</button>
+        </div>
+    </body>
+</html>

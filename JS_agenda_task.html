@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <title>Agenda de Tarefas</title>
+        <script>
+
+            document.addEventListener("DOMContentLoaded", function () {
+
+                const form = document.querySelector("form");
+                const taskList = document.getElementById("taskList");
+                
+                let taskArray = [];
+                if (sessionStorage["task"]) {
+
+                    taskArray = JSON.parse( sessionStorage["task"] ) ;
+                }
+
+                for ( let i = 0; i < taskArray.length; i++ ) {
+
+                    taskList.appendChild( document.createElement("li"));
+                    taskList.lastElementChild.textContent = taskArray[i];
+                    console.log(taskArray[i])
+
+                    //form.taskList.li.textContent = taskArray[i];
+                }
+
+                form.addEventListener("submit", function (event){
+
+                    event.preventDefault();
+
+                    taskList.appendChild( document.createElement("li") );
+                    taskList.lastElementChild.textContent = form.task.value;
+
+                    taskArray.push( form.task.value )
+
+                    sessionStorage["task"] = JSON.stringify(taskArray);
+                    
+                    form.task.value = "";
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <form method="post" action="JS_agenda_task.html">
+            <div>
+                <label>
+                    Tarefas
+                    <input type="text" name="task" required autofocus>
+                </label>
+                <button type="submit">Guardar</button>
+            </div>
+        </form>
+        <ol id="taskList"></ol>
+    </body>
+</html>

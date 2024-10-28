@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Jogo do Galo</title>
+        <style>
+            #game {
+                max-width: 980px;
+                margin: 100px auto 0 auto;
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-template-rows: 25vh 25vh 25vh;
+            }
+            
+            #game button{
+                font-size: 5vw;
+            }
+            
+            #reset {
+                font-size: 200%;
+                padding: 10px;
+                margin: 10px 0 0 12px;
+            }
+             #container h1 {
+                font-family: Arial, sans-serif;
+             }   
+        </style>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                
+
+                let xScore = 0;
+                let oScore = 0;
+                const player1 = document.getElementById("player1")
+                const player2 = document.getElementById("player2")
+
+                const buttons = document.querySelectorAll("#game button");
+                const reset = document.getElementById("reset")
+                let play = "X";
+
+                //Função criada para fazer reset do jogo
+                function resetGame() {
+                    
+                    for ( let i = 0; i < 9; i++) {
+                        buttons[i].textContent = "";
+                    }
+                    
+                    play ="X";
+                }
+                
+                function score () {
+                    
+                    alert("Ganhaste " + play);
+                    if (play == "X") {
+                        xScore++;
+                    }
+                    else {
+                        oScore++;
+                    }
+                    resetGame();
+                }
+
+                function checkWinner () {
+                    
+                    if (
+                        buttons[0].textContent == play &&
+                        buttons[1].textContent == play &&
+                        buttons[2].textContent == play
+                    ) {
+                        score();
+                    
+                        }
+                    if (
+                        buttons[3].textContent == play &&
+                        buttons[4].textContent == play &&
+                        buttons[5].textContent == play
+                    ) {
+                        score();
+                    
+                    }
+                    if (
+                        buttons[6].textContent == play &&
+                        buttons[7].textContent == play &&
+                        buttons[8].textContent == play
+                    ) {
+                        score();
+                    
+                    }
+                    if (
+                        buttons[0].textContent == play &&
+                        buttons[3].textContent == play &&
+                        buttons[6].textContent == play
+                    ) {
+                        score();
+                    
+                    }
+                    if (
+                        buttons[1].textContent == play &&
+                        buttons[4].textContent == play &&
+                        buttons[7].textContent == play
+                    ) {
+                        score();
+                    
+                    }
+                    if (
+                        buttons[2].textContent == play &&
+                        buttons[5].textContent == play &&
+                        buttons[8].textContent == play
+                    ) {
+                        score();
+                    
+                    }
+                    if (
+                        buttons[0].textContent == play &&
+                        buttons[4].textContent == play &&
+                        buttons[8].textContent == play
+                    ) {
+                        score();
+                    
+                    }
+                    if (
+                        buttons[2].textContent == play &&
+                        buttons[4].textContent == play &&
+                        buttons[6].textContent == play
+                    ) {
+                        score();
+                    
+                    }
+
+                    player1.textContent = xScore;
+                    player2.textContent = oScore;
+                }
+
+                for (let i = 0; i < buttons.length; i++) {
+
+                    buttons[i].addEventListener("click", function () {
+
+                        if (buttons[i].textContent == "") {
+                            buttons[i].textContent = play;
+                            
+                            checkWinner();
+
+                            if (play == "O") {
+
+                                play = "X";
+                            }
+                            else {
+                                play = "O";
+                            }
+                        }                      
+                    });
+                }
+                
+                reset.addEventListener("click", function () {
+                    //window.location.reload() --> Serve para fazer reload da pagina
+                    resetGame();
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div id="container">
+            <h1>Jogo do Galo</h1>
+            <dl>
+                <dt>Jogador 1 (X)</dt>
+                <dd id="player1">0</dd>
+                <dt>Jogador 2 (O)</dt>
+                <dd id="player2">0</dd>
+            </dl>
+        </div>
+        <div id="game">
+            <button type="button"></button>
+            <button type="button"></button>
+            <button type="button"></button>
+            <button type="button"></button>
+            <button type="button"></button>
+            <button type="button"></button>
+            <button type="button"></button>
+            <button type="button"></button>
+            <button type="button"></button>
+        </div>
+        <div>
+            <button type="button" id="reset">Reiniciar</button>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <title>Formulários</title>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                
+                const form = document.querySelector("form");
+                
+                form.addEventListener("submit", function (event) {
+
+                    /*  Como os formulário sem da página por default na sua submissão, 
+                        vamos previnir que isso aconteça com "event.preventDefault()" se for necessario*/
+                    event.preventDefault();
+
+                    /*  Para aceder ao valor atual de um campo de formulário, acedemos ao campo pelo seu 
+                        nome dentro do formulário e depois a propriedade de .value */
+                    console.log(form.full_name.value);
+                });
+
+                form.full_name.addEventListener("change", function () {
+                    
+                    console.log(" Valor atual: ", this.value);
+                });
+                
+                const password = form.password;
+                const repeatPass = form.repeat_password;
+                
+                function comparePasswords() {
+                    
+                    if (                        
+                        password.value.length > 0 &&                     
+                        repeatPass.value.length > 0 &&                       
+                        password.value != repeatPass.value
+                        ) {
+                            
+                            alert("Passwords Diferentes!");
+                        }
+                }
+                password.addEventListener("change", comparePasswords);
+                    
+                repeatPass.addEventListener("change", comparePasswords);
+
+            });
+        </script>
+    </head>
+    <body>
+        <main>
+            <h1>Formulários</h1>
+            <form method="post" action="JS_formularios.html">
+                <div>
+                    <label>
+                        Nome Completo
+                        <input type="text" name="full_name" required minlength="3" maxlength="80">
+                    </label>
+                    <label>
+                        Password
+                        <input type="password" name="password" required minlength="8">
+                    </label>
+                    <label>
+                        Repeat Password
+                        <input type="password" name="repeat_password" required minlength="8"    >
+                    </label>
+                    <div>
+                        <button type="submit" name="send">Enviar</button>
+                    </div>
+                </div>
+            </form>
+        </main>
+    </body>
+</html>

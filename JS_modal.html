@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <title>Esconder um Modal</title>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                /*
+                let modal = document.getElementsByClassName("modal");
+
+                console.log(modal[0]);
+                */
+
+                const modal = document.querySelector(".modal");
+
+                console.log(modal);
+                
+                const agreeBtn = document.getElementById("agree");
+                const notAgreeBtn = document.getElementById("not_agree");
+                
+                console.log(agreeBtn, notAgreeBtn);
+
+                agreeBtn.addEventListener("click", function () {
+                    console.log("A enviar a tua informação para 814 entidade");
+
+                    modal.classList.add("hide");
+                })
+                notAgreeBtn.addEventListener("click", function () {
+                    
+                    modal.classList.add("hide");
+                })
+            })
+        </script>
+        <style>
+			body { margin: 0; padding: 0; }
+
+            .hide { display: none !important; }
+
+            .modal {
+                width: 100vw;
+                height: 100vh;
+                position: fixed;
+                top: 0;
+                left: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: rgba(0, 0, 0, 0.7);
+                font-size: 2rem;
+            }
+
+            .modal > div {
+                width: 70vw;
+                height: 50vh;
+                background-color: #FFF;
+                border-radius: 10px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+            </style>
+            </head>
+            <body>
+            <div class="modal">
+            <div>
+                <div>
+                    Ui, Vou Vender Toda a Tua Informação!
+                </div>
+                <div>
+                    <button type="button" id="agree">Concordo</button>
+                    <button type="button" id="not_agree">Não Concordo</button>
+                </div>
+            </div>
+            </div>
+            <p> rwetr wewrwetrwt wetwtwr wetw ttrtr</p>
+            <p> rwetr wewrwetrwt wetwtwr wetw ttrtr</p>
+            <p> rwetr wewrwetrwt wetwtwr wetw ttrtr</p>
+            <p> rwetr wewrwetrwt wetwtwr wetw ttrtr</p>
+            <p> rwetr wewrwetrwt wetwtwr wetw ttrtr</p>
+            <p> rwetr wewrwetrwt wetwtwr wetw ttrtr</p>
+            <p> rwetr wewrwetrwt wetwtwr wetw ttrtr</p>
+            <p> rwetr wewrwetrwt wetwtwr wetw ttrtr</p>
+        </div>
+    </body>
+</html>

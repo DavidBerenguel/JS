@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <title>Condições</title>
+        <script>
+            var price = 123;
+            var balance = 200;
+
+            if(balance >= price) {
+                console.log("Tens suficiente!");
+            }
+
+            else {
+                console.log("Não podes comprar!");
+            }
+
+            var name = "Rafael"; 
+            
+            if(name == "Rafael") {
+                console.log("É o Rafael!");
+            }
+
+            if(name != "Rafael") {
+                console.log("Não és o Rafael!");
+            }
+
+            var stock = 20;
+
+            if(stock > 0) {
+                console.log("Pode comprar");
+            }
+
+            else {
+                console.log("Esgotado");
+            }
+
+            /* Condições mais complexas*/
+            if(balance >= price) {
+
+                if(name == "Rafael") {
+
+                    if(stock > 0) {
+                        console.log("OK, Rafael, podes fazer a compra porque tens dinheiro suficiente e existe stock");
+                    }
+                    else {
+                        console.log("Afinal não há stock");
+                    }
+                }
+                else {
+                    console.log("Não és o Rafael");
+                }
+            }
+            else {
+            console.log("Não tens dinheiro suficiente");
+            }
+            
+            if(balance >= price && name == "Rafael" && stock > 0) {
+                console.log("Ok Rafael, podes fazer a compra porque tens dinheiro suficiente e existe stock");
+            }
+            else {
+				console.log("Falhou algo, confirme que realmente é o Rafael e que tem dinheiro suficiente e que existe stock em loja");
+			}
+
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

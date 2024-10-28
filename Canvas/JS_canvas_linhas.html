@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset=utf-8>
+        <title>Canvas: Linhas</title>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+
+                const canvas = document.querySelector("canvas").getContext("2d");
+
+                canvas.strokeStyle = "#008";
+
+                /* Iniciar o desenho */
+                canvas.beginPath();
+
+                /* Establecer uma posição inicial */
+                canvas.moveTo(50, 100);
+                
+                /* Definir a direção da linha a desenhar*/
+                canvas.lineTo(100, 200);
+
+                canvas.lineTo(150, 100);
+                canvas.lineTo(50, 100);
+
+                /* Aplicar o desenho pretendido*/
+                canvas.stroke();
+
+                canvas.clearRect(0, 0, 800, 800);
+
+                //--------------------------------
+
+                canvas.beginPath();
+
+                canvas.moveTo(200, 0);
+
+                canvas.lineTo(200, 600);
+                
+                canvas.moveTo(400, 0);
+                
+                canvas.lineTo(400, 600);
+                //-----
+                canvas.moveTo(0, 400);
+                
+                canvas.lineTo(600, 400);
+
+                canvas.moveTo(0, 200);
+                
+                canvas.lineTo(600, 200);
+                //-----
+                canvas.moveTo(200, 200);
+
+                canvas.lineTo(400, 400);
+
+                canvas.moveTo(400, 200);
+
+                canvas.lineTo(200, 400);
+                                
+
+                canvas.stroke();
+                
+            });
+        </script>
+        <style>
+            canvas { outline: 1px solid red; }
+        </style>
+    </head>
+    <body>
+        <canvas width="600" height="600"></canvas>
+    </body>
+</html>

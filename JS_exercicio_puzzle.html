@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt">
+	<head>
+		<meta charset="utf-8">
+		<title>Lista com Efeito Acordeão / Exercício Manipulação de uma Lista</title>
+		<script>
+			/* exercício:
+
+			pegar na lista UL e a cada 1 segundo que passe
+			acrescentar um novo LI com o texto "Item X"
+			sendo o X o número actual do LI ex: Item 1, Item 2, Item 3, etc
+
+			quando chegar ao Item 20, começa a remover de baixo para cima
+			retira primeiro o Item 20, depois o Item 19, depois o Item 18, etc
+			quando tiver removido todos os LIs, recomeçar o processo do zero
+			recolocando: Item 1, Item 2, Item 3, etc
+			*/
+			document.addEventListener("DOMContentLoaded", function() {
+				const list = document.getElementById("list");
+				
+				let n = 1;
+
+				setInterval(function() {
+
+					if(n <= 20) {
+						list.appendChild( document.createElement("li") );
+
+						list.lastElementChild.textContent = "Item " + n;
+
+					}
+					else {
+
+						list.lastElementChild.remove();
+
+						if(n == 40) {
+							n = 0;
+						}
+					}
+
+					n++;
+
+					/* forma alternativa 
+					if(n <= 20) {
+						list.appendChild( document.createElement("li") );
+
+						list.lastElementChild.textContent = "Item " + n;
+
+						n++;
+					}
+					else {
+
+						if(list.children.length > 0) {
+							list.lastElementChild.remove();
+						}
+						else {
+							n = 1;
+						}
+					}	*/				 
+
+				}, 100);
+			});
+		</script>
+	</head>
+	<body>
+		<ul id="list"></ul>
+	</body>
+</html>

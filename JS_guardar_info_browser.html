@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <title>Guardar informação entre paginas dentro do Browser</title>
+        <script>
+            //console.log( sessionStorage );
+
+            //console.log( localStorage );
+
+            //sessionStorage["highscore"] = 1000;
+
+            document.addEventListener("DOMContentLoaded", function () {
+
+                const messagemBox = document.getElementById("form_message");
+
+                /* 
+                Vamos criar um sistema de rascunhos a cada 5seg, 
+                guardamos o texto que está actualmente na textarea no 
+                sessionStore
+                */
+                setInterval(function () {
+
+                    // if ( messagemBox.value != "" ) {
+                    // if ( messagemBox.value ) {
+                    if ( messagemBox.value.length > 0 ) {
+    
+                        localStorage["form_message_draft"] = messagemBox.value;
+                    }
+
+                },5000);
+
+                /* agora que já guardamos no localStorage o draft, quando entrar na página de novo,
+                 se o draft existir, preencher o textarea com esse texto guardado*/
+                if (localStorage["form_message_draft"]) {
+                    
+                    messagemBox.value = localStorage["form_message_draft"];
+                }
+
+                /* na submissão do formulário, limpar o draft do localStorage */
+                const form = document.querySelector("form");
+
+                form.addEventListener("submit", function (event) {
+
+                    event.preventDefault();
+                    
+                    messageBox.value = ""; // limpar a caixa de texto
+
+                    //localStorage["form_message_draft"] = ""; //localStorage["form_message_draft"] = ""; // limpa o texto mas mantem este item no localStorage
+
+                    localStorage.removeItem("form_message_draft"); // remove por inteiro do localStorage
+                });
+
+            });
+        </script>
+    </head>
+    <body>
+        <form method="post" action="JS_guardar_info.html">
+            <div>
+                <label for="">Message</label>
+            </div>
+            <div>
+                <textarea id="form_message" name="message" required></textarea>
+            </div>
+            <div>
+                <button type="submit">Enviar</button>
+            </div>
+        </form>
+    </body>
+</html>

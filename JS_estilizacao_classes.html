@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang=pt>
+    <head>
+        <meta charset="utf-8">
+        <title>Alterção de Estilização por Classes</title>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+
+                const t = document.getElementById("title");
+                const p = document.getElementById("paragraph");
+                const b = document.getElementById("change");
+                
+                b.addEventListener("click", function() {
+                    
+                    if ( t.className == "red" ) {
+                        
+                        t.className = "green";
+                        p.className = "red";
+                    }
+                    
+                    else {
+                        t.className = "red";
+                        p.className = "green"
+                    }
+                })
+                
+            });
+        </script>
+        <style>
+
+            .red {
+                color: #F00;
+                font-style: italic;
+                text-decoration: underline;
+            }
+
+            .green {
+                background-color: #060;
+                color: #FFF;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="title" class="red">Título da página</h1>
+        <p id="paragraph" class="green">Parágrafo com cenas e coisas</p>
+        <div> 
+            <button type="button" id="change">Mudar</button>
+        </div>
+    </body>
+</html>

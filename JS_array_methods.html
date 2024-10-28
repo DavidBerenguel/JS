@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <title>Métodos para Array</title>
+        <script>
+            const badWords = ["Malandro", "Cabeçudo", "burro"];
+            
+            //Pesquisa por algo e fazer um conjunto de ações se encontrar o pretendido
+            badWords.find( word => {
+
+                if(word === "Malandro") {
+                    console.log("Faz alguma coisa com o Malandro");
+                }
+                if(word === "Cabeçudo") {
+                    console.log("Faz alguma coisa com o Cabeçudo")
+                }
+            });
+
+            const numbers = [0, 5, 10, 15, 20];
+
+            // Array map: Transforma todos os valores do array de acordo com o pretendido sem exceções
+
+            // O "x" na função pode ser o que quisermos 
+            // Outro exemplo sem o "x" ----> const newMappedArray = numbers.map(num => num * 2);
+
+            const newMappedArray = numbers.map(x => x * 2);
+
+            console.log(newMappedArray);
+
+            // Array filter: Filtra os valores para o pretendido e cria um novo array 
+            
+            const newFilteredArray = numbers.filter(x => x > 10);
+            
+            console.log(newFilteredArray);
+
+        </script>
+    </head>
+    <body>
+        
+    </body>
+</html>

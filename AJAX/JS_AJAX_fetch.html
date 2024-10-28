@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <title>AJAx com FETCH API</title>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+
+                const list = document.getElementById("list");
+
+                fetch("AJAX.json")
+                .then( response => response.json())
+                .then( result =>  {
+                    
+                    console.log(result)
+                    for ( let country of result) {
+
+                        list.appendChild( document.createElement("li")).textContent = country;
+                    }
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <ul id="list"></ul>
+    </body>
+</html>

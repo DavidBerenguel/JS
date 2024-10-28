@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <title>Canvas: Snake</title>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                
+                const canvas = document.querySelector("canvas");
+                const canvasCtx = canvas.getContext("2d");
+                
+                const boxSize = 32;
+                
+                function randomXY() {
+                    
+                    return {
+                        x: Math.floor(Math.random() * 17 + 1) * boxSize,
+                        y: Math.floor(Math.random() * 15 + 3) * boxSize
+                    }
+                };
+
+                function collisionChecker() {
+                    /* Ciclo para percorrer toda a cauda*/
+                    for(let i = 1; i < snake.length; i++){
+                        /* Verificar se a cabeça toca na cauda*/
+                        if(snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
+                            
+                            return true;
+                        }
+                    }
+
+                    return false;
+                }
+                
+                // Criar Imagem de background
+                const groundImg = new Image();
+                groundImg.src = "img/ground.png";
+                
+                // Criar a Maçã
+                const foodImg = new Image();
+                foodImg.src = "img/food.png";
+                
+                const deadAudio = new Audio("audio/dead.mp3");
+                const leftAudio = new Audio("audio/left.mp3");
+                const upAudio = new Audio("audio/up.mp3");
+                const rightAudio = new Audio("audio/right.mp3");
+                const downAudio = new Audio("audio/down.mp3");
+                const eatAudio = new Audio("audio/eat.mp3");
+
+                let food = randomXY();
+                let score = 0;
+                let direction;
+                
+                const snake = [];
+                snake[0] = {
+                    x: boxSize * 7,
+                    y: boxSize * 7
+                };
+                
+                const gameDrawing = setInterval(() => {
+
+                    canvasCtx.drawImage(groundImg, 0, 0);
+            
+                    canvasCtx.drawImage(foodImg, food.x, food.y)
+                    
+                    /* Guardar cabeça da cobra */
+                    let snakeX = snake[0].x;
+                    let snakeY = snake[0].y;
+
+                    if(direction == "left") {
+
+                        snakeX = snakeX - boxSize;
+                    }
+                    else if(direction == "up") {
+                        snakeY = snakeY - boxSize;
+                    }
+                    else if(direction == "right") {
+                        snakeX = snakeX + boxSize;
+                    }
+                    else if(direction == "down") {
+                        snakeY = snakeY + boxSize;
+                    }
+
+                    /* Recalcular o posicionamento da cabeça e aumentar da cobra*/
+                    snake.unshift({ x: snakeX, y: snakeY });
+
+                    for(let i = 0; i < snake.length; i++){
+                        
+                        canvasCtx.fillStyle = (i == 0) ? "#FFF" : "#060";
+
+                        canvasCtx.fillRect( snake[i].x, snake[i].y, boxSize, boxSize);
+
+                        canvasCtx.strokeStyle = "#F00";
+
+                        canvasCtx.strokeRect(snake[i].x, snake[i].y, boxSize, boxSize);
+                        
+                    }
+
+                    /* Verificar se comeu o fruto, e verificar quantas frutas comeu*/
+                    if( snakeX == food.x && snakeY == food.y) {
+
+                        food = randomXY();
+
+                        score++;
+
+                        eatAudio.play();
+                    }
+                    else {
+                        snake.pop();
+                    }
+
+                    /* Verificar GAME OVER */
+                    if( 
+                        snakeX < boxSize || 
+                        snakeX > boxSize * 17 ||
+                        snakeY < boxSize * 3 ||
+                        snakeY > boxSize * 17 ||
+                        collisionChecker()
+                    ) {
+                        clearInterval(gameDrawing);
+
+                        deadAudio.play();
+
+                        alert("GAME OVER! Pontuação: " + score);
+
+                        if (confirm("Quer tentar de novo?")) {
+                            window.location.reload();
+                        }
+                    }
+
+                    /* Escrever o score */
+                    canvasCtx.fillStyle = "#FFF";
+                    canvasCtx.font = "45px Calibri";
+                    canvasCtx.fillText(score, boxSize * 2, boxSize * 1.6);
+
+                }, 100);
+
+                document.addEventListener("keydown", event => {
+
+                    if(event.keyCode == 37 && direction != "right") {
+                        //snake[0].x = snake[0].x - boxSize;
+                        direction = "left";
+
+                        leftAudio.play();
+                    }
+
+                    if(event.keyCode == 38 && direction != "down") {
+                        //snake[0].y = snake[0].y - boxSize;
+                        direction = "up";
+
+                        upAudio.play();
+                    }
+
+                    if (event.keyCode == 39 && direction != "left") {
+                        //snake[0].x = snake[0].x + boxSize;
+                        direction = "right";
+
+                        rightAudio.play();
+                    }
+
+                    if(event.keyCode == 40 && direction != "up") {
+                        //snake[0].y = snake[0].y + boxSize;
+                        direction = "down"; 
+                        
+                        downAudio.play();
+                    }
+                });
+                    
+            });
+        </script>
+    </head>
+    <body>
+        <canvas width="608" height="608"></canvas>
+    </body>
+</html>

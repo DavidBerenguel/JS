@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <title>Pedra, Papel, Tesoura</title>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+
+                const options = ["Tesoura", "Pedra", "Papel"];
+
+                
+                const cpuChoiceHTML = document.getElementById("cpuChoice")
+                const playerChoiceHTML = document.getElementById("playerChoice")
+                const result = document.getElementById("result")
+                
+                const buttons = document.querySelectorAll("button");
+                
+                for ( let i = 0; i < 3; i++) {
+                    
+                    buttons[i].addEventListener("click", function () {
+                        
+                        let cpuChoice = options[Math.floor(Math.random() * 3)];
+                        let playerChoice = buttons[i].textContent;
+                        
+                        playerChoiceHTML.textContent = playerChoice;
+                        cpuChoiceHTML.textContent = cpuChoice;
+                        //console.log("Player:", playerChoice);
+                        //console.log("Computador:", cpuChoice);
+
+                        if (playerChoice == cpuChoice) {
+
+                            result.textContent = "Empate";
+                        }
+                        if (playerChoice == "Papel" && cpuChoice == "Pedra") {
+
+                            result.textContent = "Ganhaste!";
+                        }
+                        if (playerChoice == "Tesoura" && cpuChoice == "Papel") {
+
+                            result.textContent = "Ganhaste!";
+                        }
+                        if (playerChoice == "Pedra" && cpuChoice == "Tesoura") {
+
+                            result.textContent = "Ganhaste!";
+                        }
+                        if (playerChoice == "Tesoura" && cpuChoice == "Pedra") {
+
+                            result.textContent = "Perdeste!";
+                        }
+                        if (playerChoice == "Pedra" && cpuChoice == "Papel") {
+
+                            result.textContent = "Perdeste!";
+                        }
+                        if (playerChoice == "Papel" && cpuChoice == "Tesoura") {
+
+                            result.textContent = "Perdeste!";
+                        }
+                    });
+                };
+            });
+        </script>
+        <style>
+            
+        </style>
+    </head>
+    <body>
+        <h1>Pedra, Papel, Tesoura</h1>
+        <div>
+            <button type="button">Pedra</button>
+            <button type="button">Papel</button>
+            <button type="button">Tesoura</button>
+        </div>
+        <dl>
+            <dt>Jogador:</dt>
+            <dd id="playerChoice"></dd>
+            <dt>CPU:</dt>
+            <dd id="cpuChoice"></dd>
+            <dt>Resultado:</dt>
+            <dd id="result"></dd>
+        </dl>
+    </body>
+</html>

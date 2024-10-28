@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <title>Galerias V2</title>
+        <script>
+            
+            class Gallery {
+
+                imageElement;
+                currentImg = 0;
+                imageList = [
+                        "https://cdn.pixabay.com/photo/2016/12/05/11/39/fox-1883658_640.jpg",
+                        "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Zebra_standing_alone_crop.jpg/800px-Zebra_standing_alone_crop.jpg",
+                        "https://cdn.pixabay.com/photo/2017/02/07/16/47/kingfisher-2046453_1280.jpg",
+                        "https://images.ecycle.com.br/wp-content/uploads/2022/10/20151831/ricky-kharawala-adK3Vu70DEQ-unsplash-scaled.jpg.webp",
+                        "https://www.petz.com.br/blog/wp-content/uploads/2021/09/dia-mundial-dos-animais-topo-1280x720.jpg",
+                        "https://t1.ea.ltmcdn.com/pt/posts/4/1/1/os_animais_mais_fofos_do_mundo_23114_600_square.jpg"
+                ];
+                    
+                constructor(img) {
+
+                    this.imageElement = img;
+
+                    this.displayImg();
+                }
+                
+                random() {
+                    
+                    const oldImg = this.currentImg;
+                    
+                    this.currentImg = Math.floor(Math.random() * this.imageList.length)
+
+                    if( oldImg === this.currentImg ) {
+                        
+                        console.log("Detectado imagem repetida pelo random");
+                        /* Se detetar que é igual à imagem que já lá estava
+                           a função chama-se a si mesma outra vez
+                           este conceito chama-se recursividade, a função é recursiva
+                        */
+                        return this.random();
+                    }
+                    
+                    this.displayImg();
+
+                }
+                prev() {
+                    
+                    this.currentImg--;
+
+                    if(this.currentImg < 0) {
+
+                        this.currentImg = this.imageList.length -1;
+                    }
+
+                    this.displayImg();
+
+                    console.log("Imagem actual", this.currentImg);
+                }
+                
+                next() {
+                    
+                    this.currentImg++;
+
+                    if(this.currentImg >= this.imageList.length) {
+
+                        this.currentImg = 0;
+                    }
+
+                    this.displayImg();
+
+                    console.log("Imagem actual", this.currentImg);
+
+                }
+
+                displayImg() {
+
+                    this.imageElement.src = this.imageList[ this.currentImg ];
+                }
+
+            }
+            document.addEventListener("DOMContentLoaded", () => {
+                
+                const photo = document.getElementById("photo");
+				const prevBtn = document.getElementById("prev");
+				const nextBtn = document.getElementById("next");
+				const randomBtn = document.getElementById("random");
+                
+				const gallery = new Gallery(photo);
+                
+				prevBtn.addEventListener("click", () => gallery.prev());
+				nextBtn.addEventListener("click", () => gallery.next());
+				randomBtn.addEventListener("click", () => gallery.random());
+
+                setInterval(() => {
+                    
+                    gallery.next()
+                }, 5000);
+                
+            });
+            
+            </script>
+        <style>
+            body { margin: 0; padding: 0; overflow: hidden; }
+            
+            button { font-size: 3vw; }
+            
+            main div:last-child {
+                display: grid;
+                grid-template-columns: 1fr 4fr 1fr;
+            }
+
+            #random { width: calc(100vw - 5px); }
+
+            #photo {
+                width: 80vw;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <button id="random">Random</button>
+            <button id="prev">&lt;</button>
+            <button id="next">&gt;</button>
+        </div>
+        <div>
+            <img id="photo" src="" alt="">
+        </div>
+    </body>
+</html>

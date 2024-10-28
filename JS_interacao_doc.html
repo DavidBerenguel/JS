@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <title>Interação com o Documento</title>
+        <script>
+            window.onload = function() {
+            
+            const p = document.getElementById("paragraph");
+
+            console.log(p);
+        }
+        /*  DOM: Document Object Model
+            DOMContentLoaded é uma forma extravagante de dizer "Quando as tags de html tiverem acabado de carregar"
+        */
+        document.addEventListener("DOMContentLoaded", function() {
+           /* Mais rápido que o window.onload*/
+            const h1 = document.getElementById("title");
+            console.log(h1);
+        });
+        </script>
+        <script src="interacao_doc.js" defer></script>
+    </head>
+    <body>
+        <h1 id="title">Moelas com arroz de cabidela</h1>
+        <h2 id="subtitle">Pasteis de feijão</h2>
+        <p id="paragraph">Bacalhau a Gomes de Sá</p>
+    </body>
+</html>
